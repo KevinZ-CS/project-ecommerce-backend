@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_001450) do
     t.integer "quantity"
     t.integer "price"
     t.string "description"
+    t.string "posted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

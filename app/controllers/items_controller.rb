@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
         render json: @items
     end
 
+    def show
+        @item = Item.find(params[:id])
+        render json: @item, status: :ok
+    end
+
     def create
         @item = Item.create(item_params)
         render json: @item
@@ -12,7 +17,7 @@ class ItemsController < ApplicationController
 
     private
     def item_params
-        params.permit(:name, :size, :category, :quantity, :price, :description, :featured_image)
+        params.permit(:name, :size, :category, :quantity, :price, :description, :posted_by, :featured_image)
     end
 
 

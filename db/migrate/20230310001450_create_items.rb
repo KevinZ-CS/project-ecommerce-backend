@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.integer :quantity
       t.integer :price
       t.string :description
-
+      t.string :posted_by
       t.timestamps
     end
   end
