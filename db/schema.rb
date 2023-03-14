@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_001450) do
     t.string "size"
     t.string "category"
     t.integer "quantity"
-    t.integer "price"
+    t.decimal "price", precision: 4, scale: 2
     t.string "description"
     t.string "posted_by"
     t.datetime "created_at", null: false
