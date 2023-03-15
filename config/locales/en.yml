@@ -31,3 +31,20 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      admin_user:
+        password: "password"
+        password_confirmation: "password confirmation"
+    errors:
+      models:
+        admin_user:
+          attributes:
+            password:
+              blank: "Password is required."
+            password_confirmation: 
+              confirmation: 'Passwords did not match. Try again.'
+
+

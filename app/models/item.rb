@@ -1,12 +1,13 @@
 class Item < ApplicationRecord
     has_one_attached :featured_image
+    belongs_to :admin_user
 
-    validates :name, presence: { message: 'Name is required.'}, uniqueness: { case_sensitive: false }
+    validates :name, presence: { message: 'Name is required.'}, uniqueness: { case_sensitive: false, message: 'This name already exists.' }
     validates :size, presence: { message: 'Please select a size.'}
     validates :category, presence: { message: 'Please select a category.'}
-    validates :quantity, presence: {message: 'Please enter a quantity.'}, numericality: { only_integer: true, less_than_or_equal_to: 100 }, numericality: { less_than_or_equal_to: 100, message: 'Limit is 100.' }
-    validates :price, presence: {message: 'Please enter a price.'}, numericality: { only_numeric: true, message: 'Price is invalid.' }
-    validates :description, presence: { message: 'Please add a description.'}, length: { minimum: 40, maximum: 80, too_short: 'Description must be at least 40 characters long.', too_long: 'Character limit is 80.' }
+    validates :quantity, numericality: { only_integer: true, less_than_or_equal_to: 100, message: 'Please enter valid quantity. Limit is 100.' }
+    validates :price, numericality: { only_numeric: true, message: 'Price is invalid.' }
+    validates :description, presence: { message: 'Please add a description.'}, length: { minimum: 40, maximum: 250, too_short: ' Description must be at least 40 characters long.', too_long: ' Character limit is 250.' }
 
     validate :acceptable_image
 
