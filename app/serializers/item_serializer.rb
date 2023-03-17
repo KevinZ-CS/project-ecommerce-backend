@@ -1,6 +1,6 @@
 class ItemSerializer < ActiveModel::Serializer
 include Rails.application.routes.url_helpers
-  attributes :id, :name, :size, :category, :quantity, :price, :description, :posted_by, :featured_image
+  attributes :id, :name, :size, :category, :quantity, :price, :description, :featured_image
 
 
   def price

@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
     has_one_attached :featured_image
-    belongs_to :admin_user
+    # belongs_to :admin_user
 
     validates :name, presence: { message: 'Name is required.'}, uniqueness: { case_sensitive: false, message: 'This name already exists.' }
     validates :size, presence: { message: 'Please select a size.'}

@@ -60,10 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_062647) do
     t.integer "quantity"
     t.decimal "price", precision: 4, scale: 2
     t.string "description"
-    t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_user_id"], name: "index_items_on_admin_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

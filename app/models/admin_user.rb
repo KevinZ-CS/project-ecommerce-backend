@@ -1,6 +1,6 @@
 class AdminUser < ApplicationRecord
     has_secure_password
-    has_many :items
+    # has_many :items
  
     PASSWORD_REQUIREMENTS = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}\z/
     # /\A(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\W]).{8,}\z/

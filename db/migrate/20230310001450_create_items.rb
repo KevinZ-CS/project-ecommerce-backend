@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.integer :quantity
       t.decimal :price, precision: 4, scale: 2
       t.string :description
-      t.references :admin_user
+      # t.references :admin_user
       t.timestamps
     end
   end
