@@ -1,21 +1,27 @@
 class ItemsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show, :create]
+    skip_before_action :authorize, only: [:index, :show, :create, :destroy]
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
    
 
     def index
-        @items = Item.all
-        render json: @items, status: :ok
+        items = Item.all
+        render json: items, status: :ok
     end
 
     def show
-        @item = Item.find(params[:id])
-        render json: @item, status: :ok
+        item = Item.find(params[:id])
+        render json: item, status: :ok
     end
 
     def create
-        @item = Item.create!(item_params)
-        render json: @item, status: :created
+        item = Item.create!(item_params)
+        render json: item, status: :created
+    end
+
+    def destroy
+        item = Item.find(params[:id])
+        item.destroy
+        render json: { success: 'Item has been deleted.' }, status: :ok
     end
 
     private
