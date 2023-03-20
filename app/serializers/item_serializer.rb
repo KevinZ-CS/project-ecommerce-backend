@@ -5,7 +5,8 @@ include Rails.application.routes.url_helpers
 
   def price
     # format the price value as $10.00
-    "$#{'%.2f' % self.object.price}"
+    # "$#{'%.2f' % self.object.price}"
+    "#{'%.2f' % self.object.price}"
   end
 
   def featured_image

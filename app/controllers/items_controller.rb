@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show, :create, :destroy]
+    skip_before_action :authorize, only: [:index, :show, :create, :destroy, :update]
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
    
 
@@ -18,6 +18,13 @@ class ItemsController < ApplicationController
         render json: item, status: :created
     end
 
+    def update
+        item = Item.find(params[:id])
+        item.update!(item_params)
+        render json: item, status: :ok
+    end
+
+
     def destroy
         item = Item.find(params[:id])
         item.destroy
@@ -32,7 +39,7 @@ class ItemsController < ApplicationController
 
 
     def item_params
-        params.permit(:name, :size, :category, :quantity, :price, :description, :admin_user_id, :featured_image)
+        params.permit( :id, :name, :size, :category, :quantity, :price, :description, :admin_user_id, :featured_image)
     end
 
 
