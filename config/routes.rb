@@ -12,9 +12,13 @@ Rails.application.routes.draw do
   post '/adminLogin', to: 'admin_sessions#create'
   delete '/logout', to: 'admin_sessions#destroy'
 
+  post '/userLogin', to: 'user_sessions#create'
+  delete '/userLogout', to: 'user_sessions#destroy' 
+
   post '/adminSignUp', to: 'admin_users#create'
   get "/adminUser", to: "admin_users#show"
 
   post '/signup', to: 'users#create'
+  get '/user', to: 'users#show'
 
 end
