@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show, :create, :destroy, :update]
+    skip_before_action :authorize_admin_user, only: [:index, :show, :create, :destroy, :update]
+    skip_before_action :authorize_user, only: [:index, :show, :create, :destroy, :update]
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
    
 

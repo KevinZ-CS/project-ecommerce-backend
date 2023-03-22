@@ -1,14 +1,16 @@
 class AdminUsersController < ApplicationController
-    skip_before_action :authorize, only: :create
+    skip_before_action :authorize_admin_user, only: :create
+    skip_before_action :authorize_user, only: :create
 
 
     def create
-        @user = AdminUser.create!(admin_user_params)
-        render json: @user, status: :created
+        admin_user = AdminUser.create!(admin_user_params)
+           # session[:user_id] = admin_user.id
+        render json: admin_user, status: :created
     end
 
     def show
-        render json: @current_user
+        render json: @current_admin_user
     end
  
  

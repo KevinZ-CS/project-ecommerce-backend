@@ -38,6 +38,9 @@ en:
       admin_user:
         password: "password"
         password_confirmation: "password confirmation"
+      user:
+        password: "password"
+        password_confirmation: "password confirmation"
     errors:
       models:
         admin_user:
@@ -46,5 +49,13 @@ en:
               blank: "Password is required."
             password_confirmation: 
               confirmation: 'Passwords did not match. Try again.'
+        user:
+          attributes:
+            password:
+              blank: "Password is required."
+            password_confirmation: 
+              confirmation: 'Passwords did not match. Try again.'
+
+
 
 
