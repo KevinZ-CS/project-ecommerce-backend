@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
     has_one_attached :featured_image
+    has_many :reviews, dependent: :destroy
+    has_many :users, through: :reviews
     # belongs_to :admin_user
 
     validates :name, presence: { message: 'Name is required.'}, uniqueness: { case_sensitive: false, message: 'This name already exists.' }

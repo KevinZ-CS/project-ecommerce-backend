@@ -11,7 +11,8 @@ class ItemsController < ApplicationController
 
     def show
         item = Item.find(params[:id])
-        render json: item, status: :ok
+        render json: item, serializer: CustomItemSerializer, status: :ok
+        # render json: item, adapter: nil, include: [:reviews, :featured_image], status: :ok
     end
 
     def create

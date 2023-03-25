@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
+    has_many :reviews, dependent: :destroy
+    has_many :items, through: :reviews
 
     PASSWORD_REQUIREMENTS = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}\z/
 

@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
 
-
-  get '/item', to: 'items#index'
-  get '/item/:id', to: 'items#show' 
-  post '/item', to: 'items#create'
-  delete '/items/:id', to: 'items#destroy'
+  # get '/items', to: 'items#index'
+  # get '/items/:id', to: 'items#show' 
+  # post '/items', to: 'items#create'
+  # delete '/items/:id', to: 'items#destroy'
 
   patch '/editItemForm/:id', to: 'items#update'
   
 
   post '/adminLogin', to: 'admin_sessions#create'
-  delete '/logout', to: 'admin_sessions#destroy'
+  delete '/adminLogout', to: 'admin_sessions#destroy'
 
   post '/userLogin', to: 'user_sessions#create'
   delete '/userLogout', to: 'user_sessions#destroy' 
@@ -20,5 +19,10 @@ Rails.application.routes.draw do
 
   post '/signup', to: 'users#create'
   get '/user', to: 'users#show'
+
+  resources :items, only: [:index, :show, :create, :destroy] do
+    resources :reviews, only: [:update, :destroy, :create, :show]
+  end
+
 
 end
