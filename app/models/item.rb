@@ -2,9 +2,12 @@ class Item < ApplicationRecord
     has_one_attached :featured_image
     has_many :reviews, dependent: :destroy
     has_many :users, through: :reviews
+    has_many :orders, dependent: :destroy
+    has_many :carts, through: :orders
     # belongs_to :admin_user
 
     validates :name, presence: { message: 'Name is required.'}, uniqueness: { case_sensitive: false, message: 'This name already exists.' }
+    # validates :name, presence: { message: 'Name is required.'}, uniqueness: { scope: :size, case_sensitive: false, message: 'This name already exists for the current size.' }
     validates :size, presence: { message: 'Please select a size.'}
     validates :category, presence: { message: 'Please select a category.'}
     validates :quantity, numericality: { only_integer: true, less_than_or_equal_to: 100, message: 'Please enter valid quantity. Limit is 100.' }
@@ -22,7 +25,6 @@ class Item < ApplicationRecord
           errors.add(:featured_image, "is too big")
         end
 
-        puts featured_image
       
         acceptable_types = ["image/jpeg", "image/jpg", "image/png"]
         unless acceptable_types.include?(featured_image.content_type)

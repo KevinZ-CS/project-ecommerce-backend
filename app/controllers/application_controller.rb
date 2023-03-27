@@ -6,9 +6,28 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 # rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :render_unprocessable_entity_response_storage
 before_action :authorize_admin_user
 before_action :authorize_user
+
+# before_action :set_render_cart
+before_action :initialize_cart
 #putting before acction in application controller will run authorize for every controller inheriting from application controller
 
 private
+
+# def set_render_cart
+#     @render_cart = true
+# end 
+
+def initialize_cart
+    # @cart = Cart.find_or_create_by(id: session[:cart_id]) 
+    @cart ||= Cart.find_by(id: session[:cart_id])
+    # || = means if cart doesnt exist set cart to Cart.find
+    if @cart.nil?
+        @cart = Cart.create
+        session[:cart_id] = @cart.id
+    end
+    # if we cant find a cart then we create one
+    #issue is that we will be creating a bunch of empty carts but we cant delete those instances once we checkoyt
+end
 
 def authorize_admin_user
     @current_admin_user = AdminUser.find_by(id: session[:user_id])

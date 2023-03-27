@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # get '/items', to: 'items#index'
   # get '/items/:id', to: 'items#show' 
   # post '/items', to: 'items#create'
@@ -13,6 +14,11 @@ Rails.application.routes.draw do
 
   post '/userLogin', to: 'user_sessions#create'
   delete '/userLogout', to: 'user_sessions#destroy' 
+
+  post '/addToCart', to: 'carts#create'
+  delete '/removeFromCart/:id', to: 'carts#delete'
+  get '/orders', to: 'orders#index'
+
 
   post '/adminSignUp', to: 'admin_users#create'
   get "/adminUser", to: "admin_users#show"
