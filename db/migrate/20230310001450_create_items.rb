@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :size
       t.string :category
       t.integer :quantity
-      t.decimal :price, precision: 4, scale: 2
+      t.decimal :price, precision: 4, scale: 2 #Need to change decimal to integer for stripe potentially
       t.string :description
       # t.references :admin_user
       t.timestamps

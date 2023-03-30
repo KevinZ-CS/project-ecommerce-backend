@@ -39,6 +39,7 @@ gem "rack-cors"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -51,3 +52,7 @@ end
 gem "active_model_serializers", "~> 0.10.13"
 
 gem 'whenever', require: false
+
+gem "net-http"
+
+gem 'stripe'

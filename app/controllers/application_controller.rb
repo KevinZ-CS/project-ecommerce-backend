@@ -7,15 +7,12 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 before_action :authorize_admin_user
 before_action :authorize_user
 
-# before_action :set_render_cart
+
 before_action :initialize_cart
 #putting before acction in application controller will run authorize for every controller inheriting from application controller
 
 private
 
-# def set_render_cart
-#     @render_cart = true
-# end 
 
 def initialize_cart
     # @cart = Cart.find_or_create_by(id: session[:cart_id]) 
@@ -26,7 +23,7 @@ def initialize_cart
         session[:cart_id] = @cart.id
     end
     # if we cant find a cart then we create one
-    #issue is that we will be creating a bunch of empty carts but we cant delete those instances once we checkoyt
+    #issue is that we will be creating a bunch of empty carts but we cant delete those instances once we checkout
 end
 
 def authorize_admin_user

@@ -3,8 +3,6 @@ class CartsController < ApplicationController
     skip_before_action :authorize_user, only: [:create, :delete]
 
 
- 
-
     def create
         item = Item.find_by(id: params[:id])
         quantity = params[:quantity].to_i
@@ -19,6 +17,7 @@ class CartsController < ApplicationController
             # if the current item is already in the order then just update the quantity
         elsif quantity <= 0
             current_order.destroy
+            head :no_content
         else
             addedItem = @cart.orders.create(item: item, quantity: quantity, size: size)
             render json: addedItem, status: :created

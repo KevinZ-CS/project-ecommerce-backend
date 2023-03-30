@@ -19,6 +19,12 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, :at => '12:00 am' do
+
+
+#Clear cron: crontab -r
+#update crontab: whenever --update-crontab
+#update cron development: whenever --update-crontab --set environment='development'
+
+every 1.day, at: '12:00am' do
     rake "delete:old_records"
 end

@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/user', to: 'users#show'
 
+ 
+
+  post '/checkout', to: 'checkout_session#create'
+  post '/webhook', to: 'webhook#create'
+
   resources :items, only: [:index, :show, :create, :destroy] do
     resources :reviews, only: [:update, :destroy, :create, :show]
   end
