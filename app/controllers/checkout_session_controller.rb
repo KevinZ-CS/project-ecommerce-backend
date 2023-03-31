@@ -1,6 +1,6 @@
 class CheckoutSessionController < ApplicationController
-    skip_before_action :authorize_admin_user, only: [:index, :show, :create, :destroy, :update]
-    skip_before_action :authorize_user, only: [:index, :show, :create, :destroy, :update]
+    skip_before_action :authorize_admin_user, only: :create
+    skip_before_action :authorize_user, only: :create
 
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
 
@@ -23,26 +23,13 @@ class CheckoutSessionController < ApplicationController
         end
         #need to structure line items in this format, using require json method to convert to array and converting price to int since stripe only works with int, also unit amount is price and price is in cents so 2200 would be $22.00
 
-     
-
-
        cart = params.require(:_json).map do |item|
             item[:cart]
        end
        
- 
        cart_id = cart[0][:id]
-   
        #need this cart id because we're adding this to metadata when the session is created so we can retrieve it later using webhooks from even.data.object
   
-
-#        customer = Stripe::Customer.create({
-#   description: 'My First Test Customer (created for API docs at https://www.stripe.com/docs/api)',
-#   metadata: {
-#     cart_id: cart_id,
-#   }
-# })
-     
         session = Stripe::Checkout::Session.create({
             shipping_address_collection: {allowed_countries: ['US', 'CA']},
             shipping_options: [
@@ -85,7 +72,5 @@ class CheckoutSessionController < ApplicationController
           })
           render json: {url: session.url}.to_json, status: :ok #this url will be used by the frontend to navigate to the stripe checkout page
         
-  
-
     end
 end

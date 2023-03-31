@@ -1,8 +1,7 @@
 class WebhookController < ApplicationController
 
-    skip_before_action :authorize_admin_user, only: [:index, :show, :create, :destroy, :update]
-    skip_before_action :authorize_user, only: [:index, :show, :create, :destroy, :update]
-
+    skip_before_action :authorize_admin_user, only: :create
+    skip_before_action :authorize_user, only: :create
     skip_before_action :initialize_cart, only: :create
 
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-    skip_before_action :authorize_admin_user, only: [:index, :show, :create, :destroy, :update]
-    skip_before_action :authorize_user, only: [:index, :show, :create, :destroy, :update]
+    skip_before_action :authorize_admin_user, only: [:show, :create]
+    skip_before_action :authorize_user, only: :show
 
     def show
         review = Review.find(params[:id])
@@ -8,8 +8,13 @@ class ReviewsController < ApplicationController
     end
 
     def create
+        if Review.find_by(user_id: params[:user_id]) && Review.find_by(item_id: params[:item_id])
+        render json: { errors: { unauthorized: 'You have left a review for this item already.' } }, status: :unauthorized
+        else
         review = Review.create!(review_params)
         render json: review, status: :created
+        end
+
     end
 
     # def update

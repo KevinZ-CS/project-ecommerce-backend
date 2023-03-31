@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     
 
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-# rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :render_unprocessable_entity_response_storage
+
 before_action :authorize_admin_user
 before_action :authorize_user
 
@@ -27,7 +27,7 @@ def initialize_cart
 end
 
 def authorize_admin_user
-    @current_admin_user = AdminUser.find_by(id: session[:user_id])
+    @current_admin_user = AdminUser.find_by(id: session[:admin_user_id])
     # looking if that sessions exists
   
     render json: { errors: ['Not authorized'] }, status: :unauthorized unless @current_admin_user
@@ -46,8 +46,5 @@ def render_unprocessable_entity_response(exception)
     render json: { errors: exception.record.errors }, status: :unprocessable_entity
 end
 
-# def render_unprocessable_entity_response_storage(exception)
-#     render json: { errors: 'this is a test' }, status: :unprocessable_entity
-# end
 
 end
