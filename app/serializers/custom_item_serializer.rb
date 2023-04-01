@@ -1,6 +1,6 @@
 class CustomItemSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :name, :size, :category, :quantity, :price, :description, :featured_image, :average_rating
+  attributes :id, :name, :size, :category, :sub_category, :quantity, :price, :description, :featured_image, :average_rating
   has_many :reviews
 
   # this serializer includes reviews since we only want reviews on show actions not index

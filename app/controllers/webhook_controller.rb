@@ -44,6 +44,7 @@ class WebhookController < ApplicationController
                 price: Item.find(order[:item_id])[:price],
                 size: order[:size],
                 quantity: order[:quantity],
+                user_id: order[:user_id],
                 total: (order[:quantity] * Item.find(order[:item_id])[:price]).to_i,
               )
             end

@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_002232) do
     t.string "name"
     t.string "size"
     t.string "category"
+    t.string "sub_category"
     t.integer "quantity"
     t.decimal "price", precision: 4, scale: 2
     t.string "description"
@@ -74,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_002232) do
     t.bigint "cart_id", null: false
     t.integer "quantity"
     t.string "size"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
@@ -87,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_002232) do
     t.string "size"
     t.integer "quantity"
     t.integer "total"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

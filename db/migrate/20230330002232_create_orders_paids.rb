@@ -7,6 +7,7 @@ class CreateOrdersPaids < ActiveRecord::Migration[7.0]
       t.string :size
       t.integer :quantity
       t.integer :total, precision: 4, scale: 2
+      t.integer :user_id
 
       t.timestamps
     end

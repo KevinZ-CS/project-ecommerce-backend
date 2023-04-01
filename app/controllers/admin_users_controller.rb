@@ -5,8 +5,18 @@ class AdminUsersController < ApplicationController
 
 
     def create
-        admin_user = AdminUser.create!(admin_user_params)
+        # admin_user = AdminUser.create!(admin_user_params)
            # session[:user_id] = admin_user.id
+
+        admin_user = AdminUser.create!(
+           first_name: params[:first_name],
+           last_name: params[:last_name],
+           access_type: params[:access_type],
+           email: params[:email].downcase,
+           password: params[:password],
+           password_confirmation: params[:password_confirmation],
+           terms_of_service: params[:terms_of_service],
+        )
         render json: admin_user, status: :created
     end
 
@@ -15,10 +25,10 @@ class AdminUsersController < ApplicationController
     end
  
  
-    private
+    # private
  
  
-    def admin_user_params
-        params.permit(:first_name, :last_name, :access_type, :email, :password, :password_confirmation, :terms_of_service)
-    end
+    # def admin_user_params
+    #     params.permit(:first_name, :last_name, :access_type, :email, :password, :password_confirmation, :terms_of_service)
+    # end
 end

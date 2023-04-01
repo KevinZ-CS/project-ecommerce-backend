@@ -35,5 +35,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:update, :destroy, :create, :show]
   end
 
+  delete '/reviews/:id', to: 'reviews#destroy'
+
 
 end

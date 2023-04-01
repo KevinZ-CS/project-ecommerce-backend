@@ -10,6 +10,7 @@ class Item < ApplicationRecord
     # validates :name, presence: { message: 'Name is required.'}, uniqueness: { scope: :size, case_sensitive: false, message: 'This name already exists for the current size.' }
     validates :size, presence: { message: 'Please select a size.'}
     validates :category, presence: { message: 'Please select a category.'}
+    validates :sub_category, presence: { message: 'Please select a type.'}
     validates :quantity, numericality: { only_integer: true, less_than_or_equal_to: 100, message: 'Please enter valid quantity. Limit is 100.' }
     validates :price, numericality: { only_numeric: true, message: 'Price is invalid.' }
     validates :description, presence: { message: 'Please add a description.'}, length: { minimum: 40, maximum: 250, too_short: ' Description must be at least 40 characters long.', too_long: ' Character limit is 250.' }

@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
-    skip_before_action :authorize_admin_user, only: [:show, :create]
-    skip_before_action :authorize_user, only: :show
+    skip_before_action :authorize_admin_user, only: :create
+    skip_before_action :authorize_user, only: :destroy
 
-    def show
-        review = Review.find(params[:id])
-        render json: review, status: :ok
-    end
+    # def show
+    #     review = Review.find(params[:id])
+    #     render json: review, status: :ok
+    # end
 
     def create
         if Review.find_by(user_id: params[:user_id]) && Review.find_by(item_id: params[:item_id])
@@ -27,15 +27,11 @@ class ReviewsController < ApplicationController
     #     end
     # end
 
-    # def destroy
-    #     review = Review.find_by(id: params[:id])
-    #     if review.user_id == @current_user.id
-    #         review.destroy
-    #         render json: { sucess: 'Review has been deleted.' }, status: :ok
-    #     else
-    #         render json: { errors: "Cannot delete other user's comment." }, status: :unauthorized
-    #     end
-    # end
+    def destroy
+        review = Review.find_by(id: params[:id])
+        review.destroy
+        head :no_content
+    end
 
 
 

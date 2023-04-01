@@ -7,6 +7,7 @@ class CartsController < ApplicationController
         item = Item.find_by(id: params[:id])
         quantity = params[:quantity].to_i
         size = params[:size]
+        user_id = params[:user_id]
         # item data gets passed in from frontend via params
         current_order = @cart.orders.find_by(item_id: item.id, size: size)
         # @cart is an instance of Cart that was just created and the session is using this new instance as id, @current is also specific to the current session, each time a user initiatiates an action to the backend a new cart session is created,
@@ -19,7 +20,7 @@ class CartsController < ApplicationController
             current_order.destroy
             head :no_content
         else
-            addedItem = @cart.orders.create(item: item, quantity: quantity, size: size)
+            addedItem = @cart.orders.create(item: item, quantity: quantity, size: size, user_id: user_id)
             render json: addedItem, status: :created
         end
     end

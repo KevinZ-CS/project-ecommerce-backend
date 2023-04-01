@@ -4,12 +4,16 @@ class UserSessionsController < ApplicationController
 
 
     def create
-        user = User.find_by(email: params[:email])
-        if user&.authenticate(params[:password])
-            session[:user_id] = user.id
-            render json: user.to_json(except: [:password_digest])
+        if session[:admin_user_id] || session[:user_id]
+            render json: { errors: ['User already logged in.'] }, status: :unauthorized
         else
-            render json: { errors: ['Invalid username or password'] }, status: :unauthorized
+            user = User.find_by(email: params[:email].downcase)
+            if user&.authenticate(params[:password])
+                session[:user_id] = user.id
+                render json: user.to_json(except: [:password_digest])
+            else
+                render json: { errors: ['Invalid username or password'] }, status: :unauthorized
+            end
         end
     end
     #logging in to create a session using a post request
