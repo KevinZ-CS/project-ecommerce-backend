@@ -68,7 +68,7 @@ class CheckoutSessionController < ApplicationController
             invoice_creation: {enabled: true},
             # These placeholder URLs will be replaced in a following step.
             success_url: ENV['CLIENT_URL'], #this will take us to whatever url we specify in our app once the checkout has been successfuly completed
-            cancel_url: ENV['CLIENT_URL'],
+            cancel_url: ENV['CLIENT_URL_CANCEL'],
           })
           render json: {url: session.url}.to_json, status: :ok #this url will be used by the frontend to navigate to the stripe checkout page
         
