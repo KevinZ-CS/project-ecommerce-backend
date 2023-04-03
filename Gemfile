@@ -56,3 +56,8 @@ gem 'whenever', require: false
 gem "net-http"
 
 gem 'stripe'
+
+gem 'redis-rails'
+gem 'hiredis'
+
+gem 'faker'

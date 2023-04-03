@@ -2,9 +2,18 @@ class ItemsController < ApplicationController
     skip_before_action :authorize_admin_user, only: [:index, :show]
     skip_before_action :authorize_user, only: [:index, :show, :create, :destroy, :update]
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+
    
 
     def index
+
+        # items = Rails.cache.fetch("all_items", expires_in: 30.minutes) do 
+        #     redis = Redis.new(host: "localhost")
+        #     redis.set("all_items", Item.all.to_json)
+        #     JSON.parse redis.get("all_items")
+        #     Marshal.load(redis.get("all_items"))
+        #     data = Item.all
+        # end
         items = Item.all
         render json: items, status: :ok
     end
