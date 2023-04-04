@@ -6,4 +6,4 @@ namespace :delete do
       instance.destroy
       end
     end
-  end
+end
