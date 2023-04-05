@@ -61,3 +61,5 @@ gem 'redis-rails'
 gem 'hiredis'
 
 gem 'faker'
+
+gem 'aws-sdk-s3', "~> 1.119" 

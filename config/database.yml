@@ -79,8 +79,11 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: project_ecommerce_backend_production
-  username: project_ecommerce_backend
-  password: <%= ENV["PROJECT_ECOMMERCE_BACKEND_DATABASE_PASSWORD"] %>
+
+production:  
+<<: *default  
+database: <%= ENV['RDS_DB_NAME'] %>  
+username: <%= ENV['RDS_USERNAME'] %>  
+password: <%= ENV['RDS_PASSWORD'] %>  
+host: <%= ENV['RDS_HOSTNAME'] %>  
+port: <%= ENV['RDS_PORT'] %>
