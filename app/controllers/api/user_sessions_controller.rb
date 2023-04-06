@@ -1,4 +1,4 @@
-class UserSessionsController < ApplicationController
+class Api::UserSessionsController < ApplicationController
 skip_before_action :authorize_admin_user, only: [:create, :destroy]
 skip_before_action :authorize_user, only: :create
 

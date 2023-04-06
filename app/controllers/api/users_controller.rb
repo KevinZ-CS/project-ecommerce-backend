@@ -1,9 +1,9 @@
-class AdminUsersController < ApplicationController
-skip_before_action :authorize_admin_user, only: :create
-skip_before_action :authorize_user, only: [:create, :show]
+class Api::UsersController < ApplicationController
+skip_before_action :authorize_admin_user, only: [:create, :show]
+skip_before_action :authorize_user, only: :create
 
 def create
-    admin_user = AdminUser.create!(
+    user = User.create!(
         first_name: params[:first_name],
         last_name: params[:last_name],
         access_type: params[:access_type],
@@ -12,11 +12,11 @@ def create
         password_confirmation: params[:password_confirmation],
         terms_of_service: params[:terms_of_service],
     )
-    render json: admin_user, status: :created
+    render json: user, status: :created
 end
 
 def show
-    render json: @current_admin_user
+    render json: @current_user
 end
- 
+
 end

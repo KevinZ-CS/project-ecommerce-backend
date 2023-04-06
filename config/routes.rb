@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+namespace :api do
   post '/adminLogin', to: 'admin_sessions#create'
   delete '/adminLogout', to: 'admin_sessions#destroy'
 
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
   patch '/editItemForm/:id', to: 'items#update'
 
   delete '/reviews/:id', to: 'reviews#destroy'
+
+end
 
 
 end
